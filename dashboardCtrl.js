@@ -1,7 +1,12 @@
-app.controller("dashboardCtrl", ['$scope',
-	function($scope) {
+app.controller("dashboardCtrl", ['$scope', 'FullData',
+	function($scope, FullData) {
+		
+		$scope.init = function() {
+			$scope.name = "wulfsuspension";
+		};
+		
 		$scope.get = function() {
-			console.log("clicked");
+			FullData.get($scope.name);
 		};
 	}
 ]);

@@ -6,7 +6,11 @@
 	</head>
 	
 	<body>
-		<div ng-app="dashboard" ng-controller="dashboardCtrl">
+		<div ng-app="dashboard" ng-controller="dashboardCtrl" ng-init="init()">
+			<select ng-model="name">
+				<option value="wulfsuspension">Wulf Suspensions</option>
+				<option value="suspensionspecialists">Suspension Specialists</option>
+			</select>
 			<button ng-click="get()">Get</button>
 		</div>
 		
