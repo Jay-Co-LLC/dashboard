@@ -11,9 +11,13 @@
 				<option value="wulfsuspension">Wulf Suspensions</option>
 				<option value="suspensionspecialists">Suspension Specialists</option>
 			</select>
-			<button ng-click="get()">Get</button>
-		</div>
+			<button ng-click="runReport()">Run Report</button><br/><br/>
+			<button ng-click="getList()">Refresh List</button>
 		
+			<ul>
+				<li ng-repeat="file in list"><a href="https://ebayreports.s3.amazonaws.com/{{ file }}">{{ file }}</a>
+			</ul>
+		</div>
 		
 		<script src="dashboardApp.js"></script>
 		<script src="dashboardCtrl.js"></script>
