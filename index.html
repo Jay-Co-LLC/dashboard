@@ -1,22 +1,34 @@
+<!doctype html>
+
 <html>
 	<head>
 		<title>Dashboard</title>
-		<link rel="stylesheet" href="style.css">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	</head>
 	
 	<body>
 		<div ng-app="dashboard" ng-controller="dashboardCtrl" ng-init="init()">
-			<select ng-model="name">
-				<option value="wulfsuspension">Wulf Suspensions</option>
-				<option value="suspensionspecialists">Suspension Specialists</option>
-			</select>
-			<button ng-click="runReport()">Run Report</button><br/><br/>
-			<button ng-click="getList()">Refresh List</button>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<form class="form-inline">
+					<select ng-model="name" class="form-control mr-2">
+						<option value="wulfsuspension">Wulf Suspensions</option>
+						<option value="suspensionspecialists">Suspension Specialists</option>
+					</select>
+					<button ng-click="runReport()" class="btn btn-primary mr-2">Run Report</button>
+					<button ng-click="getList()" class="btn btn-secondary mr-2">Refresh List</button>
+					<i class="fa fa-lg" ng-class="(isRefreshing || isRunning) ? 'fa-spinner fa-spin' : ''" title="Search"></i>
+				</form>
+			</nav>
 		
-			<ul>
-				<li ng-repeat="file in list"><a href="https://ebayreports.s3.amazonaws.com/{{ file }}">{{ file }}</a>
-			</ul>
+			<div class="px-2">
+				<ul class="list-group">
+					<li ng-repeat="file in list" class="list-group-item"><a href="https://ebayreports.s3.amazonaws.com/{{ file }}">{{ file }}</a>
+				</ul>
+			</div>
 		</div>
 		
 		<script src="dashboardApp.js"></script>
