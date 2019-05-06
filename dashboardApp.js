@@ -29,3 +29,9 @@ app.factory('GetAllObjects', ['$http', function($http) {
 	
 	return GetAllObjects;
 }]);
+
+app.filter('removePath', function() {
+	return function(input) {
+		return input.split('/')[2];
+	}
+});

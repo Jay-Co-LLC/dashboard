@@ -20,13 +20,13 @@
 					</select>
 					<button ng-click="runReport()" class="btn btn-primary mr-2">Run Report</button>
 					<button ng-click="getList()" class="btn btn-secondary mr-2">Refresh List</button>
-					<i class="fa fa-lg" ng-class="(isRefreshing || isRunning) ? 'fa-spinner fa-spin' : ''" title="Search"></i>
+					<i class="fa fa-lg" ng-class="(isRefreshing || isRunning) ? 'fa-spinner fa-spin' : ''" class="mr-2" title="Search"></i>
 				</form>
 			</nav>
 		
 			<div class="px-2">
 				<ul class="list-group">
-					<li ng-repeat="file in list" class="list-group-item"><a href="https://ebayreports.s3.amazonaws.com/{{ file }}">{{ file }}</a>
+					<li ng-repeat="file in list | orderBy: file.split(' ')[1] : true" class="list-group-item"><a href="https://ebayreports.s3.amazonaws.com/{{ file }}">{{ file | removePath }}</a>
 				</ul>
 			</div>
 		</div>
