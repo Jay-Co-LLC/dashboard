@@ -37,5 +37,10 @@ app.controller("dashboardCtrl", ['$scope', 'FullData', 'GetAllObjects',
 					}
 				);
 		};
+		
+		$scope.$watch('name', (newVal, oldVal, scope) => {
+			if (newVal !== oldVal)
+				scope.getList();
+		});
 	}
 ]);
