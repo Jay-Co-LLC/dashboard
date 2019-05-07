@@ -14,12 +14,12 @@
 		<div ng-app="dashboard" ng-controller="dashboardCtrl" ng-init="init()">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<form class="form-inline">
-					<select ng-model="name" class="form-control mr-2">
+					<select ng-model="name" ng-disabled="isRunning || isRefreshing" class="form-control mr-2">
 						<option value="wulfsuspension">Wulf Suspensions</option>
 						<option value="suspensionspecialists">Suspension Specialists</option>
 					</select>
-					<button ng-click="runReport()" class="btn btn-primary mr-2">Run Report</button>
-					<button ng-click="getList()" class="btn btn-secondary mr-2">Refresh List</button>
+					<button ng-click="runReport()" ng-disabled="isRunning || isRefreshing" class="btn btn-primary mr-2">Run Report</button>
+					<button ng-click="getList()" ng-disabled="isRunning || isRefreshing" class="btn btn-secondary mr-2">Refresh List</button>
 					<i class="fa fa-lg" ng-class="(isRefreshing || isRunning) ? 'fa-spinner fa-spin' : ''" class="mr-2" title="Search"></i>
 				</form>
 			</nav>
