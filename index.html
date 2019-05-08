@@ -23,6 +23,8 @@
 					<i class="fa fa-lg" ng-class="(isRefreshing || isRunning) ? 'fa-spinner fa-spin' : ''" class="mr-2" title="Search"></i>
 				</form>
 			</nav>
+			
+			<div class="alert mx-2" ng-show="alertMessage" ng-class="(isError) ? 'alert-danger' : 'alert-info'">{{ alertMessage }}</div>
 		
 			<div class="px-2">
 				<ul class="list-group">

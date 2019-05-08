@@ -4,6 +4,13 @@ app.controller("dashboardCtrl", ['$scope', 'FullData', 'GetAllObjects',
 		$scope.list = []
 		$scope.isRefreshing = false;
 		$scope.isRunning = false;
+		$scope.alertMessage = '';
+		$scope.isError = true;
+		
+		var _resetAlert = function() {
+			$scope.alertMessage = '';
+			$scope.isError = false;
+		};
 		
 		$scope.init = function() {
 			$scope.name = "wulfsuspension";
@@ -12,19 +19,26 @@ app.controller("dashboardCtrl", ['$scope', 'FullData', 'GetAllObjects',
 		
 		$scope.runReport = function() {
 			$scope.isRunning = true;
+			_resetAlert();
+			
 			FullData.get($scope.name)
 				.then(
 					(res) => {
 						$scope.isRunning = false;
+						$scope.alertMessage = 'Success calling apiProxy, refreshing automatically until report is generated...';
 					},
 					(res) => {
 						$scope.isRunning = false;
+						$scope.isError = true;
+						$scope.alertMessage = 'Error calling apiProxy, please try again later.';
 					}
 			);
 		};
 		
 		$scope.getList = function() {
 			$scope.isRefreshing = true;
+			_resetAlert();
+			
 			GetAllObjects.get($scope.name)
 				.then(
 					(res) => {
