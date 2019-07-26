@@ -11,28 +11,55 @@
 	</head>
 	
 	<body>
-		<div ng-app="dashboard" ng-controller="dashboardCtrl" ng-init="init()">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<form class="form-inline">
-					<select ng-model="name" ng-disabled="isRunning || isRefreshing" class="form-control mr-2">
-						<option value="wulfsuspension">Wulf Suspensions</option>
-						<option value="suspensionspecialists">Suspension Specialists</option>
-					</select>
-					<button ng-click="runReport()" ng-disabled="isRunning || isRefreshing" class="btn btn-primary mr-2">Run Report</button>
-					<button ng-click="getList()" ng-disabled="isRunning || isRefreshing" class="btn btn-secondary mr-2">Refresh List</button>
-					<i class="fa fa-lg" ng-class="(isRefreshing || isRunning) ? 'fa-spinner fa-spin' : ''" class="mr-2" title="Search"></i>
-				</form>
-			</nav>
-			
-			<div class="alert mx-2" ng-show="alertMessage" ng-class="(isError) ? 'alert-danger' : 'alert-info'">{{ alertMessage }}</div>
 		
-			<div class="px-2">
-				<ul class="list-group">
-					<li ng-repeat="file in list | orderBy: file.split(' ')[1] : true" class="list-group-item"><a href="https://ebayreports.s3.amazonaws.com/{{ file }}">{{ file | removePath }}</a>
-				</ul>
-			</div>
+			<ul class="nav nav-pills mx-2 my-2" role="tablist">
+				<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#ebay">eBay</a></li>
+				<li><a class="nav-link" data-toggle="tab" href="#ordoro">ordoro</a></li>
+			</ul>
+			
+			<div class="tab-content">
+				<div id="ebay" class="tab-pane active">
+					<div ng-app="dashboard" ng-controller="dashboardCtrl" ng-init="init()">
+						<nav class="navbar navbar-expand-lg navbar-light bg-light">
+							<form class="form-inline">
+								<select ng-model="name" ng-disabled="isRunning || isRefreshing" class="form-control mr-2">
+									<option value="wulfsuspension">Wulf Suspensions</option>
+									<option value="suspensionspecialists">Suspension Specialists</option>
+								</select>
+								<button ng-click="runReport()" ng-disabled="isRunning || isRefreshing" class="btn btn-primary mr-2">Run Report</button>
+								<button ng-click="getList()" ng-disabled="isRunning || isRefreshing" class="btn btn-secondary mr-2">Refresh List</button>
+								<i class="fa fa-lg" ng-class="(isRefreshing || isRunning) ? 'fa-spinner fa-spin' : ''" class="mr-2" title="Search"></i>
+							</form>
+						</nav>
+						
+						<div class="alert mx-2" ng-show="alertMessage" ng-class="(isError) ? 'alert-danger' : 'alert-info'">{{ alertMessage }}</div>
+					
+						<div class="px-2">
+							<ul class="list-group">
+								<li ng-repeat="file in list | orderBy: file.split(' ')[1] : true" class="list-group-item"><a href="https://ebayreports.s3.amazonaws.com/{{ file }}">{{ file | removePath }}</a>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div id="ordoro" class="tab-pane">
+					<nav class="navbar navbar-expand-lg navbar-light bg-light">
+						<form class="form-inline">
+							<button class="btn btn-primary">Update TAW Inventory</button>
+						</form>
+					</nav>
+					
+					<div class="px-2 mx-2">
+						Progress info goes here
+					</div>
+				</div>
+				
 		</div>
 		
+		
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="dashboardApp.js"></script>
 		<script src="dashboardCtrl.js"></script>
 	</body>
