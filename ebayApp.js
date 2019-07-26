@@ -1,4 +1,4 @@
-var app = angular.module('dashboard', []);
+var app = angular.module('ebay', []);
 
 app.factory('FullData', ['$http', function($http) {
 	

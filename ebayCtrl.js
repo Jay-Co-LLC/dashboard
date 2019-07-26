@@ -1,4 +1,4 @@
-app.controller("dashboardCtrl", ['$scope', '$interval', 'FullData', 'GetAllObjects', 'PollQ',
+app.controller("ebayCtrl", ['$scope', '$interval', 'FullData', 'GetAllObjects', 'PollQ',
 	function($scope, $interval, FullData, GetAllObjects, PollQ) {
 		
 		$scope.list = []
