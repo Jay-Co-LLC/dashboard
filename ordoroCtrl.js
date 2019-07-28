@@ -46,7 +46,6 @@ app.controller("ordoroCtrl", ['$scope', '$interval', 'updateInventory', 'PollQ',
 													$scope.numChunksFinished = res.data.numChunksFinished;
 													
 													if ($scope.numChunksFinished >= $scope.numChunks) {
-														$scope.numChunksFinished = $scope.numChunks;
 														$scope.isComplete = true;
 														$scope.stopPolling();
 													}
